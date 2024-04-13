@@ -226,5 +226,15 @@ publishing {
 	    	artifactId = '3128-common'
             from components.java
         }
-    }
+		}
+	repositories {
+		maven {
+		name = "GitHubPackages"
+		url = "https://maven.pkg.github.com/Team3128/3128-common"
+		credentials {
+			username = "ControlsNarwhal"
+			password = "FIND ON GITHUB"
+		}
+	}
+	}
 }
