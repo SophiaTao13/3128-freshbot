@@ -21,9 +21,6 @@ import edu.wpi.first.math.numbers.N3;
 import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
-/**
- * To do fix this garbage
- */
 public abstract class SwerveBase extends SubsystemBase {
 
     public boolean chassisVelocityCorrection = true;
@@ -87,7 +84,7 @@ public abstract class SwerveBase extends SubsystemBase {
                                         twistVel.dtheta / dtConstant);
         }
         setModuleStates(kinematics.toSwerveModuleStates(velocity));
-        Logger.recordOutput("Swerve/DesiredModuleStates", kinematics.toSwerveModuleStates(velocity));
+        if(NAR_Robot.logWithAdvantageKit) Logger.recordOutput("Swerve/DesiredModuleStates", kinematics.toSwerveModuleStates(velocity));
     }
 
     /**

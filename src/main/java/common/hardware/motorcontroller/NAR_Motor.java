@@ -113,7 +113,7 @@ public abstract class NAR_Motor implements AutoCloseable {
             io = new NAR_MotorIOAutoLogged();
             NAR_Robot.addPeriodic(()-> {
                 updateIO(io);
-                Logger.processInputs("Motors/" + id, io);
+                if(NAR_Robot.logWithAdvantageKit) Logger.processInputs("Motors/" + id, io);
             }, 0.02);
         }
     }
