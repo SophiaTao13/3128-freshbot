@@ -16,7 +16,7 @@ import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 
 import common.core.misc.NAR_Robot;
-import common.utility.Log;
+import common.utility.NAR_Log;
 import edu.wpi.first.util.function.BooleanConsumer;
 
 /**
@@ -65,7 +65,7 @@ public class NarwhalDashboard extends WebSocketServer implements AutoCloseable {
             instance.start();
             instance.initDashboard();
 
-            Log.info("NarwhalDashboard", "Server has started on port " + PORT);
+            NAR_Log.info("NarwhalDashboard", "Server has started on port " + PORT);
         } catch (UnknownHostException e) {
             e.printStackTrace();
         }
@@ -141,7 +141,7 @@ public class NarwhalDashboard extends WebSocketServer implements AutoCloseable {
     @SuppressWarnings("unchecked")
     @Override
     public void onOpen(WebSocket conn, ClientHandshake handshake) {
-        Log.info("NarwhalDashboard", conn.getRemoteSocketAddress().getHostName() + " has opened a connection.");
+        NAR_Log.info("NarwhalDashboard", conn.getRemoteSocketAddress().getHostName() + " has opened a connection.");
 
         this.conn = conn;
 
@@ -229,7 +229,7 @@ public class NarwhalDashboard extends WebSocketServer implements AutoCloseable {
 	 */
     @Override
     public void onMessage(WebSocket conn, String message) {
-        Log.info("NarwhalDashboard", message);
+        NAR_Log.info("NarwhalDashboard", message);
         //Message format category + key + value or category + value, example auto:"exampleAuto"
         final String[] parts = message.split(":");
 
@@ -251,11 +251,11 @@ public class NarwhalDashboard extends WebSocketServer implements AutoCloseable {
         }
         if (autoPrograms.contains(autoName)) {
             selectedAuto = autoName;
-            Log.info("NarwhalDashboard", "Selected auto program \"" + selectedAuto + "\"");
+            NAR_Log.info("NarwhalDashboard", "Selected auto program \"" + selectedAuto + "\"");
             return;
         }
         selectedAuto = null;
-        Log.recoverable("NarwhalDashboard", "Auto program \"" + autoName + "\" does not exist.");
+        NAR_Log.recoverable("NarwhalDashboard", "Auto program \"" + autoName + "\" does not exist.");
     }
 
     /**
@@ -265,7 +265,7 @@ public class NarwhalDashboard extends WebSocketServer implements AutoCloseable {
      */
     private void updateButton(String key, boolean down) {
         if (!buttons.containsKey(key)) {
-            Log.recoverable("NarwhalDashboard", "Button \"" + key + "\" was never added.");
+            NAR_Log.recoverable("NarwhalDashboard", "Button \"" + key + "\" was never added.");
             return;
         }
         buttons.get(key).accept(down);

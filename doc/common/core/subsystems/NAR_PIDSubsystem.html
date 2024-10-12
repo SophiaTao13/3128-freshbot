@@ -78,7 +78,7 @@ loadScripts(document, 'script');</script>
 <section class="class-description" id="class-description">
 <dl class="notes">
 <dt>All Implemented Interfaces:</dt>
-<dd><code>edu.wpi.first.util.sendable.Sendable</code>, <code>edu.wpi.first.wpilibj2.command.Subsystem</code></dd>
+<dd><code>edu.wpi.first.util.sendable.Sendable</code>, <code>edu.wpi.first.wpilibj2.command.Subsystem</code>, <code>monologue.Logged</code></dd>
 </dl>
 <dl class="notes">
 <dt>Direct Known Subclasses:</dt>
@@ -86,7 +86,8 @@ loadScripts(document, 'script');</script>
 </dl>
 <hr>
 <div class="type-signature"><span class="modifiers">public abstract class </span><span class="element-name type-name-label">NAR_PIDSubsystem</span>
-<span class="extends-implements">extends edu.wpi.first.wpilibj2.command.SubsystemBase</span></div>
+<span class="extends-implements">extends edu.wpi.first.wpilibj2.command.SubsystemBase
+implements monologue.Logged</span></div>
 <div class="block">A subsystem based off of <code>PIDSubsystem</code></div>
 <dl class="notes">
 <dt>Since:</dt>
@@ -121,8 +122,8 @@ loadScripts(document, 'script');</script>
 <div class="table-header col-first">Modifier and Type</div>
 <div class="table-header col-second">Field</div>
 <div class="table-header col-last">Description</div>
-<div class="col-first even-row-color"><code>protected final <a href="../controllers/ControllerBase.html" title="class in common.core.controllers">ControllerBase</a></code></div>
-<div class="col-second even-row-color"><code><a href="#controller" class="member-name-link">controller</a></code></div>
+<div class="col-first even-row-color"><code>protected final <a href="../controllers/ControllerBase.html" title="class in common.core.controllers">ControllerBase</a>[]</code></div>
+<div class="col-second even-row-color"><code><a href="#controllers" class="member-name-link">controllers</a></code></div>
 <div class="col-last even-row-color">&nbsp;</div>
 <div class="col-first odd-row-color"><code>protected <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/function/BooleanSupplier.html" title="class or interface in java.util.function" class="external-link">BooleanSupplier</a></code></div>
 <div class="col-second odd-row-color"><code><a href="#debug" class="member-name-link">debug</a></code></div>
@@ -144,7 +145,7 @@ loadScripts(document, 'script');</script>
 <div class="summary-table two-column-summary">
 <div class="table-header col-first">Constructor</div>
 <div class="table-header col-last">Description</div>
-<div class="col-constructor-name even-row-color"><code><a href="#%3Cinit%3E(common.core.controllers.ControllerBase)" class="member-name-link">NAR_PIDSubsystem</a><wbr>(<a href="../controllers/ControllerBase.html" title="class in common.core.controllers">ControllerBase</a>&nbsp;controller)</code></div>
+<div class="col-constructor-name even-row-color"><code><a href="#%3Cinit%3E(common.core.controllers.ControllerBase...)" class="member-name-link">NAR_PIDSubsystem</a><wbr>(<a href="../controllers/ControllerBase.html" title="class in common.core.controllers">ControllerBase</a>...&nbsp;controllers)</code></div>
 <div class="col-last even-row-color">
 <div class="block">Creates a new PIDSubsystem.</div>
 </div>
@@ -164,37 +165,57 @@ loadScripts(document, 'script');</script>
 <div class="table-header col-last">Description</div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>boolean</code></div>
 <div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#atSetpoint()" class="member-name-link">atSetpoint</a>()</code></div>
-<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
+<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>boolean</code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#atSetpoint(int)" class="member-name-link">atSetpoint</a><wbr>(int&nbsp;index)</code></div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
 <div class="block">Returns true if subsystem is at setpoint, false if not</div>
 </div>
+<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#disable()" class="member-name-link">disable</a>()</code></div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
 <div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
-<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#disable()" class="member-name-link">disable</a>()</code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#disable(int...)" class="member-name-link">disable</a><wbr>(int...&nbsp;indices)</code></div>
 <div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
 <div class="block">Disables the PID control.</div>
 </div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
 <div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#enable()" class="member-name-link">enable</a>()</code></div>
-<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
+<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#enable(int)" class="member-name-link">enable</a><wbr>(int&nbsp;index)</code></div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
 <div class="block">Enables the PID control.</div>
 </div>
+<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#enableContinuousInput(double,int)" class="member-name-link">enableContinuousInput</a><wbr>(double&nbsp;minimumInput,
+ int&nbsp;maximumInput)</code></div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
 <div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
-<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#enableContinuousInput(double,double)" class="member-name-link">enableContinuousInput</a><wbr>(double&nbsp;minimumInput,
- double&nbsp;maximumInput)</code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#enableContinuousInput(double,int,int...)" class="member-name-link">enableContinuousInput</a><wbr>(double&nbsp;minimumInput,
+ int&nbsp;maximumInput,
+ int...&nbsp;indices)</code></div>
 <div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
 <div class="block">Enables continuous input.</div>
 </div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="../controllers/ControllerBase.html" title="class in common.core.controllers">ControllerBase</a></code></div>
 <div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getController()" class="member-name-link">getController</a>()</code></div>
-<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
+<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="../controllers/ControllerBase.html" title="class in common.core.controllers">ControllerBase</a></code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getController(int)" class="member-name-link">getController</a><wbr>(int&nbsp;index)</code></div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
 <div class="block">Returns the Controller object controlling the subsystem</div>
 </div>
-<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code>protected abstract double</code></div>
-<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="#getMeasurement()" class="member-name-link">getMeasurement</a>()</code></div>
-<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3">
+<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code>protected abstract double</code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="#getMeasurement()" class="member-name-link">getMeasurement</a>()</code></div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3">
 <div class="block">Returns the measurement of the process variable used by the PIDController.</div>
 </div>
+<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>double</code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getSetpoint()" class="member-name-link">getSetpoint</a>()</code></div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>double</code></div>
-<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getSetpoint()" class="member-name-link">getSetpoint</a>()</code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getSetpoint(int)" class="member-name-link">getSetpoint</a><wbr>(int&nbsp;index)</code></div>
 <div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
 <div class="block">Returns the current setpoint of the subsystem.</div>
 </div>
@@ -224,16 +245,24 @@ loadScripts(document, 'script');</script>
 </div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
 <div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#setkG_Function(java.util.function.DoubleSupplier)" class="member-name-link">setkG_Function</a><wbr>(<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/function/DoubleSupplier.html" title="class or interface in java.util.function" class="external-link">DoubleSupplier</a>&nbsp;kG_Function)</code></div>
-<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
+<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#setkG_Function(java.util.function.DoubleSupplier,int...)" class="member-name-link">setkG_Function</a><wbr>(<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/function/DoubleSupplier.html" title="class or interface in java.util.function" class="external-link">DoubleSupplier</a>&nbsp;kG_Function,
+ int...&nbsp;indices)</code></div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
 <div class="block">Sets the function returning the value multiplied against kG</div>
 </div>
-<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
-<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#setSafetyThresh(double)" class="member-name-link">setSafetyThresh</a><wbr>(double&nbsp;timeSeconds)</code></div>
-<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#setSafetyThresh(double)" class="member-name-link">setSafetyThresh</a><wbr>(double&nbsp;timeSeconds)</code></div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
 <div class="block">Sets the safetyThreshold to disable PID if setpoint is not reached</div>
 </div>
+<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#setTolerance(double)" class="member-name-link">setTolerance</a><wbr>(double&nbsp;positionTolerance)</code></div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
-<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#setTolerance(double)" class="member-name-link">setTolerance</a><wbr>(double&nbsp;positionTolerance)</code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#setTolerance(double,int...)" class="member-name-link">setTolerance</a><wbr>(double&nbsp;positionTolerance,
+ int...&nbsp;indices)</code></div>
 <div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
 <div class="block">Sets the error which is considered tolerable for use with atSetpoint().</div>
 </div>
@@ -244,13 +273,25 @@ loadScripts(document, 'script');</script>
 </div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
 <div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#startPID(double)" class="member-name-link">startPID</a><wbr>(double&nbsp;setpoint)</code></div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
+<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#startPID(double...)" class="member-name-link">startPID</a><wbr>(double...&nbsp;setpoints)</code></div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
+<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#startPID(double,int...)" class="member-name-link">startPID</a><wbr>(double&nbsp;setpoint,
+ int...&nbsp;indices)</code></div>
 <div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
 <div class="block">Sets the setpoint for the subsystem.</div>
 </div>
 <div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code>protected abstract void</code></div>
 <div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="#useOutput(double,double)" class="member-name-link">useOutput</a><wbr>(double&nbsp;output,
  double&nbsp;setpoint)</code></div>
-<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3">
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3">&nbsp;</div>
+<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code>protected abstract void</code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="#useOutput(double,double,double)" class="member-name-link">useOutput</a><wbr>(double&nbsp;output,
+ double&nbsp;setpoint,
+ double&nbsp;index)</code></div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3">
 <div class="block">Uses the output from the PIDController.</div>
 </div>
 </div>
@@ -262,6 +303,9 @@ loadScripts(document, 'script');</script>
 <div class="inherited-list">
 <h3 id="methods-inherited-from-class-java.lang.Object">Methods inherited from class&nbsp;java.lang.<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Object.html" title="class or interface in java.lang" class="external-link">Object</a></h3>
 <code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Object.html#clone()" title="class or interface in java.lang" class="external-link">clone</a>, <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Object.html#equals(java.lang.Object)" title="class or interface in java.lang" class="external-link">equals</a>, <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Object.html#finalize()" title="class or interface in java.lang" class="external-link">finalize</a>, <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Object.html#getClass()" title="class or interface in java.lang" class="external-link">getClass</a>, <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Object.html#hashCode()" title="class or interface in java.lang" class="external-link">hashCode</a>, <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Object.html#notify()" title="class or interface in java.lang" class="external-link">notify</a>, <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Object.html#notifyAll()" title="class or interface in java.lang" class="external-link">notifyAll</a>, <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Object.html#toString()" title="class or interface in java.lang" class="external-link">toString</a>, <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Object.html#wait()" title="class or interface in java.lang" class="external-link">wait</a>, <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Object.html#wait(long)" title="class or interface in java.lang" class="external-link">wait</a>, <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Object.html#wait(long,int)" title="class or interface in java.lang" class="external-link">wait</a></code></div>
+<div class="inherited-list">
+<h3 id="methods-inherited-from-class-monologue.Logged">Methods inherited from interface&nbsp;monologue.Logged</h3>
+<code>getFullPath, getPath, log, log, log, log, log, log, log, log, log, log, log, log, log, log, log, log, log, log, log, log, log, log, log, log, log, log, log, log, log, log</code></div>
 <div class="inherited-list">
 <h3 id="methods-inherited-from-class-edu.wpi.first.wpilibj2.command.Subsystem">Methods inherited from interface&nbsp;edu.wpi.first.wpilibj2.command.Subsystem</h3>
 <code>defer, getCurrentCommand, getDefaultCommand, register, removeDefaultCommand, run, runEnd, runOnce, setDefaultCommand, simulationPeriodic, startEnd</code></div>
@@ -277,9 +321,9 @@ loadScripts(document, 'script');</script>
 <h2>Field Details</h2>
 <ul class="member-list">
 <li>
-<section class="detail" id="controller">
-<h3>controller</h3>
-<div class="member-signature"><span class="modifiers">protected final</span>&nbsp;<span class="return-type"><a href="../controllers/ControllerBase.html" title="class in common.core.controllers">ControllerBase</a></span>&nbsp;<span class="element-name">controller</span></div>
+<section class="detail" id="controllers">
+<h3>controllers</h3>
+<div class="member-signature"><span class="modifiers">protected final</span>&nbsp;<span class="return-type"><a href="../controllers/ControllerBase.html" title="class in common.core.controllers">ControllerBase</a>[]</span>&nbsp;<span class="element-name">controllers</span></div>
 </section>
 </li>
 <li>
@@ -309,13 +353,13 @@ loadScripts(document, 'script');</script>
 <h2>Constructor Details</h2>
 <ul class="member-list">
 <li>
-<section class="detail" id="&lt;init&gt;(common.core.controllers.ControllerBase)">
+<section class="detail" id="&lt;init&gt;(common.core.controllers.ControllerBase...)">
 <h3>NAR_PIDSubsystem</h3>
-<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="element-name">NAR_PIDSubsystem</span><wbr><span class="parameters">(<a href="../controllers/ControllerBase.html" title="class in common.core.controllers">ControllerBase</a>&nbsp;controller)</span></div>
+<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="element-name">NAR_PIDSubsystem</span><wbr><span class="parameters">(<a href="../controllers/ControllerBase.html" title="class in common.core.controllers">ControllerBase</a>...&nbsp;controllers)</span></div>
 <div class="block">Creates a new PIDSubsystem.</div>
 <dl class="notes">
 <dt>Parameters:</dt>
-<dd><code>controller</code> - the Controller to use</dd>
+<dd><code>controllers</code> - the Controllers to use</dd>
 </dl>
 </section>
 </li>
@@ -331,12 +375,17 @@ loadScripts(document, 'script');</script>
 <section class="detail" id="periodic()">
 <h3>periodic</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">periodic</span>()</div>
+<dl class="notes">
+<dt>Specified by:</dt>
+<dd><code>periodic</code>&nbsp;in interface&nbsp;<code>edu.wpi.first.wpilibj2.command.Subsystem</code></dd>
+</dl>
 </section>
 </li>
 <li>
 <section class="detail" id="initShuffleboard()">
 <h3>initShuffleboard</h3>
-<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">initShuffleboard</span>()</div>
+<div class="member-signature"><span class="annotations">@Log
+</span><span class="modifiers">public</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">initShuffleboard</span>()</div>
 <div class="block">Initializes shuffleboard with debug elements for PID + FF values.</div>
 </section>
 </li>
@@ -344,8 +393,16 @@ loadScripts(document, 'script');</script>
 <section class="detail" id="getController()">
 <h3>getController</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="../controllers/ControllerBase.html" title="class in common.core.controllers">ControllerBase</a></span>&nbsp;<span class="element-name">getController</span>()</div>
+</section>
+</li>
+<li>
+<section class="detail" id="getController(int)">
+<h3>getController</h3>
+<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="../controllers/ControllerBase.html" title="class in common.core.controllers">ControllerBase</a></span>&nbsp;<span class="element-name">getController</span><wbr><span class="parameters">(int&nbsp;index)</span></div>
 <div class="block">Returns the Controller object controlling the subsystem</div>
 <dl class="notes">
+<dt>Parameters:</dt>
+<dd><code>index</code> - Which controller you are refering to</dd>
 <dt>Returns:</dt>
 <dd>The Controller</dd>
 </dl>
@@ -377,10 +434,18 @@ loadScripts(document, 'script');</script>
 <section class="detail" id="setTolerance(double)">
 <h3>setTolerance</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">setTolerance</span><wbr><span class="parameters">(double&nbsp;positionTolerance)</span></div>
+</section>
+</li>
+<li>
+<section class="detail" id="setTolerance(double,int...)">
+<h3>setTolerance</h3>
+<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">setTolerance</span><wbr><span class="parameters">(double&nbsp;positionTolerance,
+ int...&nbsp;indices)</span></div>
 <div class="block">Sets the error which is considered tolerable for use with atSetpoint().</div>
 <dl class="notes">
 <dt>Parameters:</dt>
 <dd><code>positionTolerance</code> - Position error which is tolerable.</dd>
+<dd><code>indices</code> - To which controller you want to change tolerance</dd>
 </dl>
 </section>
 </li>
@@ -401,10 +466,18 @@ loadScripts(document, 'script');</script>
 <section class="detail" id="setkG_Function(java.util.function.DoubleSupplier)">
 <h3>setkG_Function</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">setkG_Function</span><wbr><span class="parameters">(<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/function/DoubleSupplier.html" title="class or interface in java.util.function" class="external-link">DoubleSupplier</a>&nbsp;kG_Function)</span></div>
+</section>
+</li>
+<li>
+<section class="detail" id="setkG_Function(java.util.function.DoubleSupplier,int...)">
+<h3>setkG_Function</h3>
+<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">setkG_Function</span><wbr><span class="parameters">(<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/function/DoubleSupplier.html" title="class or interface in java.util.function" class="external-link">DoubleSupplier</a>&nbsp;kG_Function,
+ int...&nbsp;indices)</span></div>
 <div class="block">Sets the function returning the value multiplied against kG</div>
 <dl class="notes">
 <dt>Parameters:</dt>
 <dd><code>kG_Function</code> - the function multiplied to kG</dd>
+<dd><code>indices</code> - To which controllers you want to set KG</dd>
 </dl>
 </section>
 </li>
@@ -412,18 +485,40 @@ loadScripts(document, 'script');</script>
 <section class="detail" id="startPID(double)">
 <h3>startPID</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">startPID</span><wbr><span class="parameters">(double&nbsp;setpoint)</span></div>
+</section>
+</li>
+<li>
+<section class="detail" id="startPID(double,int...)">
+<h3>startPID</h3>
+<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">startPID</span><wbr><span class="parameters">(double&nbsp;setpoint,
+ int...&nbsp;indices)</span></div>
 <div class="block">Sets the setpoint for the subsystem.</div>
 <dl class="notes">
 <dt>Parameters:</dt>
 <dd><code>setpoint</code> - the setpoint for the subsystem</dd>
+<dd><code>indices</code> - To which controller you want to start PID</dd>
 </dl>
 </section>
 </li>
 <li>
-<section class="detail" id="enableContinuousInput(double,double)">
+<section class="detail" id="startPID(double...)">
+<h3>startPID</h3>
+<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">startPID</span><wbr><span class="parameters">(double...&nbsp;setpoints)</span></div>
+</section>
+</li>
+<li>
+<section class="detail" id="enableContinuousInput(double,int)">
 <h3>enableContinuousInput</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">enableContinuousInput</span><wbr><span class="parameters">(double&nbsp;minimumInput,
- double&nbsp;maximumInput)</span></div>
+ int&nbsp;maximumInput)</span></div>
+</section>
+</li>
+<li>
+<section class="detail" id="enableContinuousInput(double,int,int...)">
+<h3>enableContinuousInput</h3>
+<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">enableContinuousInput</span><wbr><span class="parameters">(double&nbsp;minimumInput,
+ int&nbsp;maximumInput,
+ int...&nbsp;indices)</span></div>
 <div class="block">Enables continuous input.
 
  <p>Rather then using the max and min input range as constraints, it considers them to be the
@@ -432,6 +527,7 @@ loadScripts(document, 'script');</script>
 <dt>Parameters:</dt>
 <dd><code>minimumInput</code> - The minimum value expected from the input.</dd>
 <dd><code>maximumInput</code> - The maximum value expected from the input.</dd>
+<dd><code>indices</code> - To which controller you wan to enable continuous input</dd>
 </dl>
 </section>
 </li>
@@ -439,8 +535,16 @@ loadScripts(document, 'script');</script>
 <section class="detail" id="getSetpoint()">
 <h3>getSetpoint</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">double</span>&nbsp;<span class="element-name">getSetpoint</span>()</div>
+</section>
+</li>
+<li>
+<section class="detail" id="getSetpoint(int)">
+<h3>getSetpoint</h3>
+<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">double</span>&nbsp;<span class="element-name">getSetpoint</span><wbr><span class="parameters">(int&nbsp;index)</span></div>
 <div class="block">Returns the current setpoint of the subsystem.</div>
 <dl class="notes">
+<dt>Parameters:</dt>
+<dd><code>index</code> - To which controller you want the setpoint</dd>
 <dt>Returns:</dt>
 <dd>The current setpoint</dd>
 </dl>
@@ -450,10 +554,33 @@ loadScripts(document, 'script');</script>
 <section class="detail" id="atSetpoint()">
 <h3>atSetpoint</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">boolean</span>&nbsp;<span class="element-name">atSetpoint</span>()</div>
+</section>
+</li>
+<li>
+<section class="detail" id="atSetpoint(int)">
+<h3>atSetpoint</h3>
+<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">boolean</span>&nbsp;<span class="element-name">atSetpoint</span><wbr><span class="parameters">(int&nbsp;index)</span></div>
 <div class="block">Returns true if subsystem is at setpoint, false if not</div>
 <dl class="notes">
+<dt>Parameters:</dt>
+<dd><code>index</code> - To which controller you are refering to</dd>
 <dt>Returns:</dt>
 <dd>If subsystem is at setpoint</dd>
+</dl>
+</section>
+</li>
+<li>
+<section class="detail" id="useOutput(double,double,double)">
+<h3>useOutput</h3>
+<div class="member-signature"><span class="modifiers">protected abstract</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">useOutput</span><wbr><span class="parameters">(double&nbsp;output,
+ double&nbsp;setpoint,
+ double&nbsp;index)</span></div>
+<div class="block">Uses the output from the PIDController.</div>
+<dl class="notes">
+<dt>Parameters:</dt>
+<dd><code>output</code> - The output of the PIDController</dd>
+<dd><code>setpoint</code> - The setpoint of the controller.</dd>
+<dd><code>index</code> - To which controller you are referring to</dd>
 </dl>
 </section>
 </li>
@@ -462,12 +589,6 @@ loadScripts(document, 'script');</script>
 <h3>useOutput</h3>
 <div class="member-signature"><span class="modifiers">protected abstract</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">useOutput</span><wbr><span class="parameters">(double&nbsp;output,
  double&nbsp;setpoint)</span></div>
-<div class="block">Uses the output from the PIDController.</div>
-<dl class="notes">
-<dt>Parameters:</dt>
-<dd><code>output</code> - The output of the PIDController</dd>
-<dd><code>setpoint</code> - The setpoint of the controller.</dd>
-</dl>
 </section>
 </li>
 <li>
@@ -485,14 +606,30 @@ loadScripts(document, 'script');</script>
 <section class="detail" id="enable()">
 <h3>enable</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">enable</span>()</div>
+</section>
+</li>
+<li>
+<section class="detail" id="enable(int)">
+<h3>enable</h3>
+<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">enable</span><wbr><span class="parameters">(int&nbsp;index)</span></div>
 <div class="block">Enables the PID control. Resets the controller.</div>
+</section>
+</li>
+<li>
+<section class="detail" id="disable(int...)">
+<h3>disable</h3>
+<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">disable</span><wbr><span class="parameters">(int...&nbsp;indices)</span></div>
+<div class="block">Disables the PID control. Sets output to zero.</div>
+<dl class="notes">
+<dt>Parameters:</dt>
+<dd><code>indices</code> - </dd>
+</dl>
 </section>
 </li>
 <li>
 <section class="detail" id="disable()">
 <h3>disable</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">disable</span>()</div>
-<div class="block">Disables the PID control. Sets output to zero.</div>
 </section>
 </li>
 <li>

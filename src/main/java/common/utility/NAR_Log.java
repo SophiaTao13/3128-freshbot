@@ -2,7 +2,7 @@ package common.utility;
 
 import edu.wpi.first.wpilibj.DriverStation;
 
-public class Log {
+public class NAR_Log {
 	/**
 	 * Log a FATAL error, after which the robot cannot (properly) function. <br>
 	 * 

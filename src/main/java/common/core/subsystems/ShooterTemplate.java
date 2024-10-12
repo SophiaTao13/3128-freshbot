@@ -12,13 +12,14 @@ import edu.wpi.first.wpilibj2.command.Command;
 public abstract class ShooterTemplate extends NAR_PIDSubsystem {
     
     protected final NAR_Motor[] motors;
+
     
     /**
      * Creates an Shooter object.
      * @param controller Controller to control motor output.
      * @param motors Shooter motors.
      */
-    public ShooterTemplate(ControllerBase controller, NAR_Motor... motors){
+    public ShooterTemplate(ControllerBase[] controller, NAR_Motor... motors){
         super(controller);
         this.motors = motors;
         configMotors();
@@ -52,10 +53,11 @@ public abstract class ShooterTemplate extends NAR_PIDSubsystem {
     /**
      * Runs shooter at desired RPM.
      * @param setpoint Desired setpoint in RPM.
+     * @param index Which controller you are referring to
      * @return Command to run shooter at a desired setpoint.
      */
-    public Command shoot(double setpoint){
-        return runOnce(() -> startPID(setpoint));
+    public Command shoot(double setpoint, int index){
+        return runOnce(() -> startPID(setpoint, index));
     }
     
     /**

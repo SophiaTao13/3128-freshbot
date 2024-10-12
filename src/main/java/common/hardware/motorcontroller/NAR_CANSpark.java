@@ -19,7 +19,7 @@ import com.revrobotics.CANSparkBase.FaultID;
 
 import common.core.controllers.PIDFFConfig;
 import common.core.misc.NAR_Robot;
-import common.utility.Log;
+import common.utility.NAR_Log;
 import common.utility.narwhaldashboard.NarwhalDashboard.State;
 import common.utility.shuffleboard.NAR_Shuffleboard;
 import edu.wpi.first.wpilibj.RobotBase;
@@ -211,7 +211,7 @@ public class NAR_CANSpark extends NAR_Motor {
 			}
 		}
 		numFailedConfigs ++;
-		Log.info("Motors", "Failed to configure Spark Max " + motor.getDeviceId());
+		NAR_Log.info("Motors", "Failed to configure Spark Max " + motor.getDeviceId());
 	}
 
 	/**
@@ -341,9 +341,9 @@ public class NAR_CANSpark extends NAR_Motor {
 		REVLibError status = motor.burnFlash();
 		Timer.delay(0.5);
 		if (status == REVLibError.kOk) {
-			Log.info("Motors", "Burned flash for Spark Max " + motor.getDeviceId());
+			NAR_Log.info("Motors", "Burned flash for Spark Max " + motor.getDeviceId());
 		} else {
-			Log.unusual("Motors", "Failed to burn flash for Spark Max " + motor.getDeviceId());
+			NAR_Log.unusual("Motors", "Failed to burn flash for Spark Max " + motor.getDeviceId());
 		}
 
 		return status;

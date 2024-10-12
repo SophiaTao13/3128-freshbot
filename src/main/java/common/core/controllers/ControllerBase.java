@@ -242,7 +242,7 @@ public abstract class ControllerBase implements Sendable, AutoCloseable {
      * @param setpoint The desired setpoint.
      */
     public void setSetpoint(double setpoint) {
-        reset();
+        // reset();
         controller.setSetpoint(setpoint);
     }
 

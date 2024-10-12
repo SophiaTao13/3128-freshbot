@@ -15,7 +15,7 @@ import com.ctre.phoenix6.hardware.TalonFX;
 import com.ctre.phoenix6.signals.InvertedValue;
 import com.ctre.phoenix6.signals.NeutralModeValue;
 import common.core.controllers.PIDFFConfig;
-import common.utility.Log;
+import common.utility.NAR_Log;
 import common.utility.narwhaldashboard.NarwhalDashboard;
 
 import java.util.function.Supplier;
@@ -83,7 +83,7 @@ public class NAR_TalonFX extends NAR_Motor {
 			}
 		}
 		numFailedConfigs ++;
-		Log.info("Motors", "Failed to configure Talon FX " + motor.getDeviceID());
+		NAR_Log.info("Motors", "Failed to configure Talon FX " + motor.getDeviceID());
 	}
 
     @Override

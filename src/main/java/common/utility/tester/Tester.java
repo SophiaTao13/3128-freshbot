@@ -4,7 +4,7 @@ import java.util.function.BooleanSupplier;
 import java.util.HashMap;
 import java.util.ArrayList;
 
-import common.utility.Log;
+import common.utility.NAR_Log;
 import common.utility.narwhaldashboard.NarwhalDashboard;
 import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj2.command.Command;
@@ -49,7 +49,7 @@ public class Tester {
 
         @Override
         public void initialize() {
-            Log.info(testName, "Test Running");
+            NAR_Log.info(testName, "Test Running");
             command.initialize();
             testState = TestState.RUNNING;
         }
@@ -61,9 +61,9 @@ public class Tester {
 
         @Override
         public void end(boolean interrupted) {
-            Log.info(testName, "Test Ended");
+            NAR_Log.info(testName, "Test Ended");
             testState = (interrupted || !passCondition.getAsBoolean()) ? TestState.FAILED : TestState.PASSED;
-            Log.info(testName, "Test " + testState);
+            NAR_Log.info(testName, "Test " + testState);
             command.end(interrupted);
         }
 
@@ -123,7 +123,7 @@ public class Tester {
             testToSchedule = null;
             passTimer.stop();
             passTimer.reset();
-            Log.info(name, "Test Running");
+            NAR_Log.info(name, "Test Running");
 
             for(SystemsTest test : systemsTests) {
                 test.testState = TestState.FAILED;
@@ -168,8 +168,8 @@ public class Tester {
 
         @Override
         public void end(boolean interrupted) {
-            Log.info(name, "Test Ended");
-            Log.info(name, "Test " + state);
+            NAR_Log.info(name, "Test Ended");
+            NAR_Log.info(name, "Test " + state);
         }
 
         @Override

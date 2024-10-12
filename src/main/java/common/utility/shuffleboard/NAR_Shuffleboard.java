@@ -34,7 +34,7 @@ public class NAR_Shuffleboard {
         NAR_Robot.addPeriodic(NAR_Shuffleboard::update, 0.02);
     }
 
-    private NAR_Shuffleboard() {}
+    protected NAR_Shuffleboard() {}
 
     /**
      * Storage class for NAR_Shuffleboard
