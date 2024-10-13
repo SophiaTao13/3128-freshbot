@@ -1,99 +1,75 @@
-package common.core.subsystems;
+package common.frc.subsystems;
 
-import static edu.wpi.first.wpilibj2.command.Commands.*;
-
+import static edu.wpi.first.wpilibj2.command.Commands.sequence;
+import static edu.wpi.first.wpilibj2.command.Commands.waitSeconds;
+import static edu.wpi.first.wpilibj2.command.Commands.waitUntil;
 import java.util.function.BooleanSupplier;
 import java.util.function.DoubleSupplier;
-
+import com.ctre.phoenix.motorcontrol.NeutralMode;
+import common.hardware.motorcontroller.NAR_CANSpark;
 import common.hardware.motorcontroller.NAR_Motor;
 import common.utility.shuffleboard.NAR_Shuffleboard;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
-/**
- * Team 3128's Manipulator Template class.
- * @since 2024 Crescendo
- * @author Maggie Liang
- */
-public abstract class ManipulatorTemplate extends SubsystemBase {
-    
-    protected final NAR_Motor[] motors;
-    private final double currentThreshold;
+public class Manipulator extends SubsystemBase {
+
+    public final double currentThreshold;
     private final double intakePower;
     private final double outtakePower;
     private final double stallPower;
     private final double lagSeconds;
-    
     private BooleanSupplier debug;
     private DoubleSupplier powerSetpoint;
+    private NAR_CANSpark motors;
 
-    /**
-     * Creates an Manipulator object.
-     * @param currentThreshold Current when object is intook.
-     * @param intakePower Intake power.
-     * @param outtakePower Outtake power.
-     * @param stallPower Stall Power, run when Manipulator has a game piece.
-     * @param lagSeconds Time before current check is run.
-     * @param motors Manipulator motors.
-     */
-    public ManipulatorTemplate(double currentThreshold, double intakePower, double outtakePower, double stallPower, double lagSeconds, NAR_Motor... motors){
-        this.currentThreshold = currentThreshold;
-        this.intakePower = intakePower;
-        this.outtakePower = outtakePower;
-        this.stallPower = stallPower;
-        this.lagSeconds = lagSeconds;
-        this.motors = motors;
-        configMotors();
+     /**
+      * Creates an Manipulator object.
+      * @param currentThreshold Current when object is intook.
+      * @param intakePower Intake power.
+      * @param outtakePower Outtake power.
+      * @param stallPower Stall Power, run when Manipulator has a game piece.
+      * @param lagSeconds Time before current check is run.
+      * @param motors Manipulator motors.
+      */
+
+    public Manipulator(double currentThreshold, double intakePower, double outtakePower, double stallPower, double lagSeconds, NAR_CANSpark motors){
+         this.currentThreshold = currentThreshold;
+         this.intakePower = intakePower;
+         this.outtakePower = outtakePower;
+         this.stallPower = stallPower;
+         this.lagSeconds = lagSeconds;
+         this.motors = motors;
+         configMotors();
     }
 
-    public ManipulatorTemplate(NAR_Motor... motors){
-        this(0, 0, 0, 0, 0, motors);
-    }
+    //create a getInstance() so you can use it later in command
     
-    /**
-     * Configure motor settings.
-     */
-    protected abstract void configMotors();
-    
-    /**
-     * Returns current of the first motor.
-     */
+    public void configMotors() {
+        //define one motor (use NAR_CANspark as the type of motor)
+        //motor should have setInverted as false
+        //set motor's NeutralMode as Brake
+    };
+
     public double getCurrent(){
-        return motors[0].getStallCurrent();
+       return motors.getStallCurrent();
     }
     
-    /**
-     * Returns whether manipulator has an object.
-     */
     public boolean hasObjectPresent(){
         return Math.abs(getCurrent()) > currentThreshold;
     }
     
-    /**
-     * Sets power to all motors.
-     *
-     * @param power The power of the motor on [-1, 1]
-     */
     protected void setPower(double power){
         final double output = (debug != null && debug.getAsBoolean()) ? powerSetpoint.getAsDouble() : power;
         for (final NAR_Motor motor : motors) {
             motor.set(output);
-        }
+        
     }
     
-    /**
-     * Sets manipulator power.
-     * @param power Power the motor is run at.
-     * @return Command setting manipulator power.
-     */
     public Command run(double power){
         return runOnce(()-> setPower(power));
     }
     
-    /**
-     * Intake a game piece
-     * @return Command to intake a game piece.
-     */
     public Command intake() {
         return sequence(
             run(intakePower),
@@ -103,10 +79,6 @@ public abstract class ManipulatorTemplate extends SubsystemBase {
         );
     }
     
-    /**
-     * Outtake a game piece.
-     * @return Command to outtake a game piece.
-     */
     public Command outtake() {
         return run(outtakePower);
     }
